@@ -98,6 +98,14 @@ public class FileMenuHandler implements ActionListener{
 		readFile(filename);
 	}	
 	
+	/***
+	 * 
+	 * @param test
+	 * Gets the initial array value and then checks through every one of them to just get solely
+	 * roman numerals.
+	 * 
+	 */
+	
 	public static void checker(String[] test) {
 		String holder;
 		for(int i = 0; i < test.length; i++) {
@@ -108,6 +116,17 @@ public class FileMenuHandler implements ActionListener{
         	}
 		}
 	}
+	
+	/***
+	 * 
+	 * @param file
+	 * Gets the initial file being thrown into the class and then reads it to then do two things.
+	 * First: Reads the file and converts it into a string to then be displayed on the GUI.
+	 * Second: Goes through a checker to see if it's a valid file to begin with that contains only
+	 * valid Roman Numerals and then tokenizes it to get the length and then goes through
+	 * the TreeMap sorting process. 
+	 * 
+	 */
 	
 	public static void readFile(String file) {
 		try {
@@ -140,7 +159,6 @@ public class FileMenuHandler implements ActionListener{
         	String [] array = testHolder.split(",");	
         	String romanNum = array[i];
         	int arabicNum = romanToNumeral(String.valueOf(array[i]));
-        	
         	treemap.put(romanNum, arabicNum);
         }
 
@@ -157,6 +175,14 @@ public class FileMenuHandler implements ActionListener{
 		}
 	}
 	
+	/**
+	 * 
+	 * Comparator for the TreeMap where it has the same checking method as the 
+	 * romanToNumeral class, except this intends to sort it through a series of
+	 * for loops and if loops. 
+	 *
+	 */
+	
 	public static class RomanComparator implements Comparator<String>{
 		public int compare(String RomanNum, String ArabicNum) {
 			Map<Character, Integer> map = new HashMap<>();
@@ -171,9 +197,13 @@ public class FileMenuHandler implements ActionListener{
 	        int result = 0;
 	        
 	        for(int i = 0; i < RomanNum.length(); i++) {
+	        	// Takes in the roman numeral at the respective position to the string and makes it a new char variable.
 	        	char c = RomanNum.charAt(i);
+	        	// Grabs the value and the respective character digit for char c. 
 	        	int value = map.get(c);
+	        	// The value digit will get tallied into the result integer.
 	        	result += value;
+	        	
 	        	if(i > 0 && value > map.get(RomanNum.charAt(i-1))) {
 	        		result -= 2 * map.get(RomanNum.charAt(i-1));
 	        	}
@@ -195,7 +225,14 @@ public class FileMenuHandler implements ActionListener{
 		
 	}
 	
-	
+	/***
+	 * 
+	 * @param s
+	 * String s is basically the roman numeral being put in to then go through the hashmap 
+	 * to find what number it is equivalent to.
+	 * @return
+	 * It returns the arabic numeral. 
+	 */
 	
 	public static int romanToNumeral(String s) {
 		HashMap<Character, Integer> map = new HashMap<>();
