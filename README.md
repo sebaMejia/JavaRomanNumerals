@@ -1,5 +1,5 @@
 # JavaRomanNumerals
-5 different methods for converting Roman Numerals into Arabic Numerals through Java.
+4 different methods for converting Roman Numerals into Arabic Numerals through Java.
 
 1. The first method is a very simple write-up where it reads the file being given and then converting it into a string token, reading it one by one, and then converting it into an Arabic Numeral. 
 Once that's all done, it'll be passed onto a simple GUI. 
